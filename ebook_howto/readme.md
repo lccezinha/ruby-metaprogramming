@@ -1,0 +1,1 @@
+Exemplos tirados da apostila de meta programming do @fnando. Link: http://howtocode.com.br/ebooks/ruby-metaprogramming
