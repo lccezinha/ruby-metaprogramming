@@ -25,6 +25,6 @@ def say
   if block_given?
     yield
   else
-    puts "no block"
+    puts "no bloc"
   end
 end
