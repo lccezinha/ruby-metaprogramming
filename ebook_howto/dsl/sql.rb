@@ -2,19 +2,28 @@
 # é preciso sempre retornar o receiver após definir o attr.
 
 class SQL < BasicObject
-  def select(fields)
-    @select = fields
-    self
-  end
+  # def select(fields)
+  #   @select = fields
+  #   self
+  # end
 
-  def from(tables)
-    @tables = tables
-    self
-  end
+  # def from(tables)
+  #   @tables = tables
+  #   self
+  # end
 
-  def where(conditions)
-    @where = conditions
-    self
+  # def where(conditions)
+  #   @where = conditions
+  #   self
+  # end
+
+  %w(select from where includes).each do |method|
+    class_eval <<-RUBY
+      def #{method}(value)
+        @#{method} = value
+        self
+      end
+    RUBY
   end
 
   def to_sql
