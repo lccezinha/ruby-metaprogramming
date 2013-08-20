@@ -26,6 +26,10 @@ monkey = Monkey.new
 monkey.dance
 
 ####################
+# OBS:
+# usando o HACK com 'class << self' os métodos ficam com um comporatemento de métodos de instância
+# usando extend: tem um comportamento de métodos de classe
+####################
 
 module Census
   # dessa maneira, se houver uma inclusão em qualquer classe, o self SEMPRE SERÁ o módulo Census
@@ -43,8 +47,6 @@ module Census
   # end
   attr_accessor :population
 end
-
-# tem um comportamento de métodos de classe e não instância
 
 class Alien 
   #include Census
