@@ -35,12 +35,13 @@ module Census
   # def self.population
   #   @population
   # end
-  def population=(value)
-    @population = value
-  end
-  def population
-    @population
-  end
+  # def population=(value)
+  #   @population = value
+  # end
+  # def population
+  #   @population
+  # end
+  attr_accessor :population
 end
 
 # tem um comportamento de métodos de classe e não instância
@@ -50,9 +51,11 @@ class Alien
   # cai no problema acima
   # é preciso abrir o self da classe
   # é um HACK
-  class << self
-    include Census
-  end
+  # class << self
+  #   include Census
+  # end
+  # deve ser trocado por extend
+  extend Census
 end
 
 class Human
@@ -60,9 +63,11 @@ class Human
   # cai no problema acima
   # é preciso abrir o self da classe
   # é um HACK
-  class << self
-    include Census
-  end
+  # class << self
+  #   include Census
+  # end
+  # deve ser trocado por extend
+  extend Census
 end
 
 Human.population = 10000
