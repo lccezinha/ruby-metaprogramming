@@ -5,11 +5,15 @@
 # -> Trabalhar em cima de encapsulamento
 # -> Injetar comportamento em instancias
 
+
 #######################
 
 # executado em cima de uma instância
 # recebe um bloco
 # executado no receiver
+
+#########################
+# cria métodos de instância da classe Class para a classe Superhero
 
 puts self
 puts "ruby"
@@ -51,7 +55,7 @@ puts @superman.fly!
 puts
 
 # Apesar de ser uma classe, Superhero é tbm uma instância de Class, 
-# por isso é possível usar instance_eval
+# por isso é possível usar instance_eval .. injeta o método na instância da classe Class
 Superhero.instance_eval do
   def have_powers?
     true
