@@ -1,0 +1,20 @@
+-
+  model: Gol
+  manufactorer: VW
+  year: 2010
+
+- 
+  model: Vectra
+  manufactorer: GM
+  year: 2013
+
+- 
+  model: Voyage
+  manufactorer: VM
+  year: 2013
+
+- 
+  model: Escort
+  manufactorer: Ford
+  year: 2011
+
