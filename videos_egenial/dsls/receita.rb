@@ -1,5 +1,5 @@
 # coding: utf-8
-# STEP 1
+
 class Receita
 
   def initialize(nome)
@@ -10,6 +10,8 @@ class Receita
       preparo: [],
       ingredientes: {}
     }
+
+    yield self
   end
 
   def porcoes(quantas)
@@ -35,13 +37,14 @@ class Receita
 end
 
 
-receita = Receita.new 'Bolo'
-receita.porcoes 2
-receita.tempo 2
-receita.ingrediente 'Farinha', '300 gramas'
-receita.ingrediente 'Ovos', '3'
-receita.preparo 'Leva no fogo'
-receita.preparo 'Oléo a gosto'
-receita.preparo 've bolinha'
+receita = Receita.new 'Bolo' do |receita|
+  receita.porcoes 2
+  receita.tempo 2
+  receita.ingrediente 'Farinha', '300 gramas'
+  receita.ingrediente 'Ovos', '3'
+  receita.preparo 'Leva no fogo'
+  receita.preparo 'Oléo a gosto'
+  receita.preparo 've bolinha'
+end
 
 print receita
