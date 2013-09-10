@@ -2,7 +2,7 @@
 
 class Receita
 
-  def initialize(nome)
+  def initialize(nome, &block)
     @nome = nome
     @dados = {
       porcoes: nil,
@@ -11,7 +11,7 @@ class Receita
       ingredientes: {}
     }
 
-    yield self
+    instance_eval &block
   end
 
   def porcoes(quantas)
@@ -31,20 +31,46 @@ class Receita
   end
 
   def to_s
-    @dados.to_s
+    string = <<-EOF
+      Receita: #{@nome}
+      Rendimento: #{@dados[:porcoes]} porções
+      Tempo: #{@dados[:tempo]}
+      Ingredientes:
+        #{@dados[:ingredientes].map { |n, qtd| "#{n}: #{qtd}"  }.join("\n\t")}
+      Preparo:
+        #{@dados[:preparo].join("\n\t")}  
+    EOF
   end
 
 end
 
-
-receita = Receita.new 'Bolo' do |receita|
-  receita.porcoes 2
-  receita.tempo 2
-  receita.ingrediente 'Farinha', '300 gramas'
-  receita.ingrediente 'Ovos', '3'
-  receita.preparo 'Leva no fogo'
-  receita.preparo 'Oléo a gosto'
-  receita.preparo 've bolinha'
+def receita(name, &block)
+  Receita.new name, &block
 end
 
-print receita
+def imprimir(receita)
+  print receita
+end
+
+bolo = receita 'Bolo' do 
+  porcoes 2
+  tempo 2
+  ingrediente 'Farinha', '300 gramas'
+  ingrediente 'Ovos', '4'
+  preparo 'Leva no fogo'
+  preparo 'Óleo, muito óleo'
+  preparo 've bolinha'
+  preparo 'serve gosto.'
+end
+
+imprimir bolo
+
+# receita = Receita.new 'Bolo' do |receita|
+#   receita.porcoes 2
+#   receita.tempo 2
+#   receita.ingrediente 'Farinha', '300 gramas'
+#   receita.ingrediente 'Ovos', '3'
+#   receita.preparo 'Leva no fogo'
+#   receita.preparo 'Oléo a gosto'
+#   receita.preparo 've bolinha'
+# end
